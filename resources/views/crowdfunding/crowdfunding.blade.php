@@ -7,7 +7,7 @@ session_start();
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Home</title>
+        <title>Crowdfunding</title>
         <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -54,10 +54,7 @@ session_start();
                 @if(isset($_SESSION['nama']))
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a
-                            class="btn btn-primary mr-2"
-                            href="/profile"
-                            id="banner"
+                        <a class="btn btn-primary mr-2" href="/profile" id="banner"
                             >Halo, {{ $_SESSION["nama"] }}</a
                         >
                         <a class="btn btn-danger" href="/logout" id="banner"
@@ -68,10 +65,7 @@ session_start();
                 @else
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a
-                            class="btn btn-primary mr-2"
-                            href="/login"
-                            id="banner"
+                        <a class="btn btn-primary mr-2" href="/login" id="banner"
                             >Login</a
                         >
                         <a class="btn btn-danger" href="/register" id="banner"
@@ -82,14 +76,6 @@ session_start();
                 @endif
             </div>
         </nav>
-        @if(isset($_GET['gagal']))
-        <div
-            id="banner"
-            style="background-color: rgb(220, 53, 69); color: white"
-        >
-            Password Salah
-        </div>
-        @endif
         <div class="mb-5" id="banner">
             <div
                 class="body-login"
@@ -100,12 +86,12 @@ session_start();
                         class="col ml-5 mt-5 p-5 shadow"
                         style="background-color: rgb(248, 197, 43)"
                     >
-                        <p class="h1" style="font-size: 70px">Bantu</p>
-                        <p class="h1" style="font-size: 70px">Bersama</p>
+                        <p class="h1" style="font-size: 70px">Saatnya</p>
+                        <p class="h1" style="font-size: 70px">Bantu sesama</p>
                         <p class="h5">
                             Mari saling membantu di masa masa yang sulit.
                         </p>
-                        <a class="btn btn-primary mt-3" href=""
+                        <a class="btn btn-primary mt-3" href="#infaq"
                             >Berbuat Baik Sekarang</a
                         >
                     </div>
@@ -124,117 +110,87 @@ session_start();
                 </div>
             </div>
         </div>
-        <div class="container" id="banner">
-            <p class="h1" style="font-size: 35px">
-                Lazissu {{ isset($_GET["gagal"]) }}
-            </p>
-            <p class="h1" style="font-size: 20px">Berbagai Macam Kebaikan</p>
-            <div class="row mt-4 mb-4">
-                <div
-                    class="col shadow mr-3"
-                    style="
-                        background-color: rgb(248, 197, 43);
-                        border-radius: 5px;
-                    "
-                >
-                    <center>
-                        <p class="h1 mt-4" style="font-size: 30px">Infaq</p>
-                    </center>
-                    <p class="h3 mt-4" style="font-size: 15px">
-                        Infaq adalah mengeluarkan harta yang Pokok. mencakup
-                        zakat dan non-zakat. Infak wajib di antaranya zakat,
-                        kafarat, nazar, dan lain-lain.
-                    </p>
-                    <a class="btn btn-primary mt-2 mb-3" href="/infaq">Infaq</a>
-                </div>
-                <div
-                    class="col shadow mr-3"
-                    style="
-                        background-color: rgb(248, 197, 43);
-                        border-radius: 5px;
-                    "
-                >
-                    <center>
-                        <p class="h1 mt-4" style="font-size: 30px">
-                            Crowdfunding
+        <div class="container">
+            <div class="container mt-5 mb-4" id="banner">
+                <div class="row mt-3">
+                    <div class="col">
+                        <p class="h1" style="font-size: 35px">
+                            Daftar Crowdfunding saat ini
                         </p>
-                    </center>
-                    <p class="h3 mt-4" style="font-size: 15px">
-                        Yuk bantu sesama dalam masa masa sulit! LAZISSU
-                        memberikan bantuan untuk semua kalangan demi kebaikan
-                        bersama loh!
-                    </p>
-                    <a class="btn btn-primary" href="/crowdfunding"
-                        >Crowdfunding</a
-                    >
+                        <a class="font-size: 15px" href="/allCrowdfunding"
+                            >Lihat semua Crowdfunding</a
+                        >
+                        <div class="card-deck">
+                            @if(count($crowdfunding) < 1)
+                            <p>Belum ada Crowdfunding...</p>
+                            @else @foreach($crowdfunding as $data)
+                            <div class="card mt-3">
+                                <img class="card-img-top" src={{ asset('storage/' . $data->gambar)}}
+                                alt="Card image cap" />
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        {{ $data->nama }}
+                                    </h5>
+                                    <p class="card-text">
+                                        Rp. {{ $data->jumlah_uang }}
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <a
+                                        href="/detailCrowdfundingUser/{{ $data->id_crowdfunding }}"
+                                        class="btn btn-success w-100"
+                                        >Lihat Data</a
+                                    >
+                                </div>
+                            </div>
+                            @endforeach @endif
+                        </div>
+                    </div>
                 </div>
-                <div
-                    class="col shadow"
-                    style="
-                        background-color: rgb(248, 197, 43);
-                        border-radius: 5px;
-                    "
-                >
-                    <center>
-                        <p class="h1 mt-4" style="font-size: 30px">Waqaf</p>
-                    </center>
-                    <p class="h3 mt-4" style="font-size: 15px">
-                        Telah hadir Program Bantuan TPA. Mari kita Wujudkan 1
-                        santri 1 Quran/Iqro Paket yang tersedia : Wakaf Quran &
-                        Iqra 1 paket Quran + Iqra Wakaf seharga 75.000
-                    </p>
-                    <a class="mt-3 btn btn-primary" href="/waqaf">Waqaf</a>
+                <div class="row mt-5">
+                    <div class="col">
+                        <p class="h1" style="font-size: 35px">
+                            Hal hal yang harus kamu ketahui
+                        </p>
+                        <p class="h2 mt-2 mb-4" style="font-size: 15px">
+                            Sebelum kamu mulai, yuk baca beberapa hal dibawah
+                            ini ^^
+                        </p>
+                        <p>
+                            - Setiap uang yang dikumpulkan akan diberikan kepada
+                            Pihak yang bersangkutan dalam pengadaan Crowdfuding
+                        </p>
+                        <p>
+                            - Setelah melakukan Transfer, Pihak Admin akan
+                            segera melakukan pengecekan dan apabila sudah
+                            terverifikasi maka uang akan masuk ke dalam Rekening
+                            kami
+                        </p>
+                        <p>
+                            - Setiap orang bisa melakukan Crowdfunding jika
+                            sudah memiliki akun di Web E-Lazis
+                        </p>
+                        <p>
+                            - Hasil Donasi bisa kamu cek di Profil masing masing
+                            loh
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="container mt-5 mb-4" id="banner">
-            <p class="h1" style="font-size: 35px">Event Saat Ini</p>
-            <p class="h1" style="font-size: 20px">
-                Kebaikan yang sedang kami lakukan
-            </p>
-            <div class="row mt-5">
-                <div class="col">
-                    <p class="h1 mt-4" style="font-size: 30px">
-                        Berbagi Beras Untuk Lansia
-                    </p>
-                    <p class="h3 mt-4" style="font-size: 15px">
-                        Sahabat LAZISSU, begitu banyak lansia yang dipuncak
-                        usianya masih harus bersusah payah dalam menanggung
-                        kehidupannya. Padahal selayaknya mereka tinggal
-                        istirahat di rumah dengan banyak beribadah. Namun
-                        kenyataannya tidak seindah dengan buku perkembangan
-                        manusia. Masih banyak yang bersusah bahkan tanpa sanak
-                        saudara.
-                    </p>
-                </div>
-                <div class="col">
-                    <img
-                        src="images/event-1.png"
-                        alt="event-1"
-                        style="width: 103%; height: 90%"
-                    />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <img
-                        src="images/event-2.png"
-                        alt="event-1"
-                        style="width: 103%; height: 90%"
-                    />
-                </div>
-                <div class="col">
-                    <p class="h1 mt-4" style="font-size: 30px">
-                        Pembinaan Anak Yatim Dhuafa
-                    </p>
-                    <p class="h3 mt-4" style="font-size: 15px">
-                        Mengapa akhlaq dan Al Qur’an menjadi dasar pembinaan?
-                        Sebagian besar anak-anak yang menerima program anak asuh
-                        adalah anak-anak yang kehilangan sosok ayah dan model
-                        teladan dalam hidupnya. Ditambah himpitan ekonomi dan
-                        lingkungan yang cukup keras, sangat berdampak pada
-                        perilaku mereka.
-                    </p>
+                <div class="row mt-5">
+                    <div class="col">
+                        <p class="h1" style="font-size: 35px">
+                            Pengen Ngadain Crowdfunding juga ?
+                        </p>
+                        <p class="h2 mt-2 mb-4" style="font-size: 15px">
+                            Kamu juga bisa lho ngadain Crowdfunding ^^
+                        </p>
+                        <p style="font-size: 15px">
+                            Silahkan hubungi Kontak admin untuk mengadakan
+                            Crowdfunding, nantinya Admin akan melakukan
+                            Verifikasi dan Proses Crowdfunding bisa segera
+                            dimulai loh !
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

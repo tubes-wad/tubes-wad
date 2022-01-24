@@ -5,21 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class user extends Model
+class wakaf extends Model
 {
     use HasFactory;
 
-    protected $table = 'user';
+    protected $table = 'wakaf';
 
     protected $fillable = [
-        'nama_lengkap',
-        'role',
+        'nama',
         'email',
-        'password',
+        'id_user',
+        'nama_barang',
+        'deskripsi_barang',
+        'tanggal_pemberian',
+        'nomer_dihubungi',
+        'bukti',
         'status',
-        'nim',
-        'alamat',
-        'nohp',
         'updated_at',
         'created_at'
     ];

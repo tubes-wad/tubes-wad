@@ -7,7 +7,7 @@ session_start();
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Home</title>
+        <title>Wakaf</title>
         <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -35,15 +35,12 @@ session_start();
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap"
             rel="stylesheet"
         />
-        <style>
-            body {
-                overflow-x: hidden;
-            }
-            #banner {
-                font-family: "Poppins", sans-serif;
-            }
-        </style>
     </head>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+    </style>
     <body>
         <nav
             class="navbar navbar-expand-lg"
@@ -54,10 +51,7 @@ session_start();
                 @if(isset($_SESSION['nama']))
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a
-                            class="btn btn-primary mr-2"
-                            href="/profile"
-                            id="banner"
+                        <a class="btn btn-primary mr-2" href="/profile" id="banner"
                             >Halo, {{ $_SESSION["nama"] }}</a
                         >
                         <a class="btn btn-danger" href="/logout" id="banner"
@@ -82,14 +76,6 @@ session_start();
                 @endif
             </div>
         </nav>
-        @if(isset($_GET['gagal']))
-        <div
-            id="banner"
-            style="background-color: rgb(220, 53, 69); color: white"
-        >
-            Password Salah
-        </div>
-        @endif
         <div class="mb-5" id="banner">
             <div
                 class="body-login"
@@ -100,12 +86,12 @@ session_start();
                         class="col ml-5 mt-5 p-5 shadow"
                         style="background-color: rgb(248, 197, 43)"
                     >
-                        <p class="h1" style="font-size: 70px">Bantu</p>
-                        <p class="h1" style="font-size: 70px">Bersama</p>
+                        <p class="h1" style="font-size: 70px">Saatnya</p>
+                        <p class="h1" style="font-size: 70px">Berbagi</p>
                         <p class="h5">
                             Mari saling membantu di masa masa yang sulit.
                         </p>
-                        <a class="btn btn-primary mt-3" href=""
+                        <a class="btn btn-primary mt-3" href="#infaq"
                             >Berbuat Baik Sekarang</a
                         >
                     </div>
@@ -124,117 +110,132 @@ session_start();
                 </div>
             </div>
         </div>
-        <div class="container" id="banner">
-            <p class="h1" style="font-size: 35px">
-                Lazissu {{ isset($_GET["gagal"]) }}
-            </p>
-            <p class="h1" style="font-size: 20px">Berbagai Macam Kebaikan</p>
-            <div class="row mt-4 mb-4">
-                <div
-                    class="col shadow mr-3"
-                    style="
-                        background-color: rgb(248, 197, 43);
-                        border-radius: 5px;
-                    "
-                >
-                    <center>
-                        <p class="h1 mt-4" style="font-size: 30px">Infaq</p>
-                    </center>
-                    <p class="h3 mt-4" style="font-size: 15px">
-                        Infaq adalah mengeluarkan harta yang Pokok. mencakup
-                        zakat dan non-zakat. Infak wajib di antaranya zakat,
-                        kafarat, nazar, dan lain-lain.
-                    </p>
-                    <a class="btn btn-primary mt-2 mb-3" href="/infaq">Infaq</a>
-                </div>
-                <div
-                    class="col shadow mr-3"
-                    style="
-                        background-color: rgb(248, 197, 43);
-                        border-radius: 5px;
-                    "
-                >
-                    <center>
-                        <p class="h1 mt-4" style="font-size: 30px">
-                            Crowdfunding
-                        </p>
-                    </center>
-                    <p class="h3 mt-4" style="font-size: 15px">
-                        Yuk bantu sesama dalam masa masa sulit! LAZISSU
-                        memberikan bantuan untuk semua kalangan demi kebaikan
-                        bersama loh!
-                    </p>
-                    <a class="btn btn-primary" href="/crowdfunding"
-                        >Crowdfunding</a
-                    >
-                </div>
-                <div
-                    class="col shadow"
-                    style="
-                        background-color: rgb(248, 197, 43);
-                        border-radius: 5px;
-                    "
-                >
-                    <center>
-                        <p class="h1 mt-4" style="font-size: 30px">Waqaf</p>
-                    </center>
-                    <p class="h3 mt-4" style="font-size: 15px">
-                        Telah hadir Program Bantuan TPA. Mari kita Wujudkan 1
-                        santri 1 Quran/Iqro Paket yang tersedia : Wakaf Quran &
-                        Iqra 1 paket Quran + Iqra Wakaf seharga 75.000
-                    </p>
-                    <a class="mt-3 btn btn-primary" href="/waqaf">Waqaf</a>
-                </div>
-            </div>
-        </div>
         <div class="container mt-5 mb-4" id="banner">
-            <p class="h1" style="font-size: 35px">Event Saat Ini</p>
-            <p class="h1" style="font-size: 20px">
-                Kebaikan yang sedang kami lakukan
-            </p>
+            <div class="row mt-3">
+                <div class="col">
+                    <p class="h1" style="font-size: 35px">
+                        Orang baik yang sudah Berwakaf
+                    </p>
+                    <p class="h3 mt-4" style="font-size: 15px">
+                        “Kamu sekali-kali tidak sampai kepada kebaikan (yang
+                        sempurna), sebelum kamu menafkahkan sebagian harta yang
+                        kamu cintai. Dan apa saja yang kamu nafkahkan maka
+                        sesungguhnya Allah mengetahuinya.”
+                        <br />
+                        <br />
+                        Surat Al-Imran ayat 92
+                    </p>
+                </div>
+                <div class="col"></div>
+            </div>
+            <br />
             <div class="row mt-5">
                 <div class="col">
-                    <p class="h1 mt-4" style="font-size: 30px">
-                        Berbagi Beras Untuk Lansia
+                    <p class="h1" style="font-size: 35px">
+                        Hal hal yang harus kamu ketahui
                     </p>
-                    <p class="h3 mt-4" style="font-size: 15px">
-                        Sahabat LAZISSU, begitu banyak lansia yang dipuncak
-                        usianya masih harus bersusah payah dalam menanggung
-                        kehidupannya. Padahal selayaknya mereka tinggal
-                        istirahat di rumah dengan banyak beribadah. Namun
-                        kenyataannya tidak seindah dengan buku perkembangan
-                        manusia. Masih banyak yang bersusah bahkan tanpa sanak
-                        saudara.
+                    <p class="h2 mt-2 mb-4" style="font-size: 15px">
+                        Sebelum berwakaf, yuk baca beberapa hal dibawah ini ^^
                     </p>
-                </div>
-                <div class="col">
-                    <img
-                        src="images/event-1.png"
-                        alt="event-1"
-                        style="width: 103%; height: 90%"
-                    />
+                    <p>
+                        - Setiap Wakaf yang kami terima, akan di kelola dan
+                        dijaga langsung loh
+                    </p>
+                    <p>
+                        - Setelah melakukan perjanjian, kamu bisa mengirimkan
+                        barangnya ke lazisu
+                    </p>
+                    <p>
+                        - Setiap orang bisa melakukan wakaf jika sudah memiliki
+                        akun di Web E-Lazis
+                    </p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-5" id="infaq">
                 <div class="col">
-                    <img
-                        src="images/event-2.png"
-                        alt="event-1"
-                        style="width: 103%; height: 90%"
-                    />
-                </div>
-                <div class="col">
-                    <p class="h1 mt-4" style="font-size: 30px">
-                        Pembinaan Anak Yatim Dhuafa
+                    <p class="h1" style="font-size: 35px">Mulai Berwakaf</p>
+                    <p class="h2 mt-2 mb-4" style="font-size: 15px">
+                        Silahkan lengkap Form dibawah untuk berwakaf ^^
                     </p>
-                    <p class="h3 mt-4" style="font-size: 15px">
-                        Mengapa akhlaq dan Al Qur’an menjadi dasar pembinaan?
-                        Sebagian besar anak-anak yang menerima program anak asuh
-                        adalah anak-anak yang kehilangan sosok ayah dan model
-                        teladan dalam hidupnya. Ditambah himpitan ekonomi dan
-                        lingkungan yang cukup keras, sangat berdampak pada
-                        perilaku mereka.
+                    @if(!isset($_SESSION['nama']))
+                    <p class="h2 mt-2 mb-4" style="font-size: 15px">
+                        Kamu harus login terlebih dahulu sebelum menggunakan
+                        Fitur ini
                     </p>
+                    <a class="btn btn-primary mr-2" href="/login" id="banner"
+                        >Login</a
+                    >
+                    @else
+                    <form
+                        action="/submitWakaf"
+                        method="post"
+                        enctype="multipart/form-data"
+                    >
+                        @csrf
+                        <div class="form-group">
+                            <label for="uang">Nama Barang</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nama"
+                                name="nama"
+                                placeholder="Masukan Nama Barang"
+                            />
+                            <small id="emailHelp" class="form-text text-muted"
+                                >Silahkan masukan nama barang yang ingin
+                                diwakafkan</small
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="desk">Deskripsi Barang</label>
+                            <textarea
+                                class="form-control"
+                                name="desk"
+                                id="desk"
+                                cols="30"
+                                rows="10"
+                                placeholder="Contoh : Barang berfungsi dengan baik, varian A dst"
+                            ></textarea>
+                            <small id="emailHelp" class="form-text text-muted"
+                                >Silahkan masukan deskripsi dari barang</small
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Foto Barang</label>
+                            <input
+                                type="file"
+                                class="form-control-file"
+                                name="image"
+                                id="image"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="tgl"
+                                >Tanggal Barang ingin diwakafkan</label
+                            >
+                            <input
+                                type="date"
+                                class="form-control"
+                                name="tgl"
+                                id="tgl"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="nope">Nomer yang bisa dihubungi</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="nope"
+                                id="nope"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-warning">
+                                Waqaf
+                            </button>
+                        </div>
+                    </form>
+                    @endif
                 </div>
             </div>
         </div>

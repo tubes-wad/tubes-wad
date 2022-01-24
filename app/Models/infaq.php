@@ -5,21 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class user extends Model
+class infaq extends Model
 {
     use HasFactory;
 
-    protected $table = 'user';
+    protected $table = 'infaq';
 
     protected $fillable = [
-        'nama_lengkap',
-        'role',
+        'nama',
         'email',
-        'password',
+        'id_user',
+        'jumlah',
         'status',
-        'nim',
-        'alamat',
-        'nohp',
+        'bukti',
+        'anon',
         'updated_at',
         'created_at'
     ];

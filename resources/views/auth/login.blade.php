@@ -40,12 +40,12 @@
             <div class="ml-auto">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" style="color: white"
+                        <a class="nav-link" href="/login" style="color: white"
                             >Login</a
                         >
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: white"
+                        <a class="nav-link" href="/register" style="color: white"
                             >Register</a
                         >
                     </li>
@@ -59,7 +59,7 @@
             >
                 <center>
                     <h4>Login</h4>
-                    <img src="images/logo-lazis.jpg" alt="logo" class="mb-3" />
+                    <img src="images/logo-lazis.png" alt="logo" class="mb-3" />
                 </center>
                 <form action="/loginUser" method="POST">
                     @csrf

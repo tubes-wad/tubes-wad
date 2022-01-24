@@ -5,21 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class user extends Model
+class crowdfunding extends Model
 {
     use HasFactory;
 
-    protected $table = 'user';
+    protected $table = 'crowdfunding';
 
     protected $fillable = [
-        'nama_lengkap',
-        'role',
-        'email',
-        'password',
+        'nama',
+        'deskripsi',
+        'deadline',
+        'tujuan',
+        'kategori',
+        'gambar',
+        'jumlah_uang',
         'status',
-        'nim',
-        'alamat',
-        'nohp',
         'updated_at',
         'created_at'
     ];
