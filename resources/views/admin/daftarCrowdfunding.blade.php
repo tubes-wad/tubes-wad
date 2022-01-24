@@ -38,25 +38,25 @@ session_start();
     </head>
     <style>
         body {
-            overflow: hidden;
+            overflow-x: hidden;
         }
     </style>
     <body>
-    @if(!isset($_SESSION['role']))
-            <p>ANDA BUKAN ADMIN</p>
-    @else
-        @if($_SESSION['role'] !== 'admin')
-            <p>ANDA BUKAN ADMIN</p>
+        @if(!isset($_SESSION['role']))
+        <p>ANDA BUKAN ADMIN</p>
+        @else @if($_SESSION['role'] !== 'admin')
+        <p>ANDA BUKAN ADMIN</p>
         @else
-        <div class="row">
+        <div class="row" style="position: relative">
             <div
                 class="col-sm-2 sidebar"
                 style="
                     background-color: rgb(21, 32, 50);
                     height: 100%;
-                    width: 5%;
+                    width: 15%;
                     color: white;
-                    min-height: 100vh;
+                    height: 100%;
+                    position: fixed;
                 "
             >
                 <center>
@@ -71,7 +71,10 @@ session_start();
                     style="width: 65%"
                     >Home Admin</a
                 >
-                <a class="btn btn-warning mt-3 ml-5" href="/infaqAdmin" style="width: 65%"
+                <a
+                    class="btn btn-warning mt-3 ml-5"
+                    href="/infaqAdmin"
+                    style="width: 65%"
                     >Infaq</a
                 >
                 <a
@@ -80,14 +83,20 @@ session_start();
                     style="width: 65%"
                     >Crowdfunding</a
                 >
-                <a class="btn btn-warning mt-3 ml-5" href="/wakafAdmin" style="width: 65%"
+                <a
+                    class="btn btn-warning mt-3 ml-5"
+                    href="/wakafAdmin"
+                    style="width: 65%"
                     >Waqaf</a
                 >
-                <a class="btn btn-warning mt-3 ml-5" href="/daftarAdmin" style="width: 65%"
+                <a
+                    class="btn btn-warning mt-3 ml-5"
+                    href="/daftarAdmin"
+                    style="width: 65%"
                     >Daftar Admin</a
                 >
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-9" style="margin-left: 255px">
                 <div class="ml-5">
                     <p class="h1 mt-5" style="font-size: 35px">
                         Daftar Crowdfunding
@@ -100,15 +109,11 @@ session_start();
                         <div class="card-columns">
                             @if(count($crowdfunding) < 1)
                             <p>Belum ada Crowdfunding...</p>
-                            @else 
-                            @foreach($crowdfunding as $data)
+                            @else @foreach($crowdfunding as $data)
                             <div class="card mt-3">
-                                <img
-                                    class="card-img-top"
-                                    src={{ asset('storage/' . $data->gambar)}}
-                                    alt="Card image cap"
-                                />
-                                <div class="card-body">
+                                <img class="card-img-top" src={{ asset('storage/' . $data->gambar)}}
+                                alt="Card image cap" />
+                                <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">
                                         {{ $data->nama }}
                                     </h5>
@@ -119,19 +124,22 @@ session_start();
                                         Jumlah Saat ini Rp.{{ $data->jumlah_uang }}
                                     </p>
                                     <p class="card-text">
-                                        Status Crowdfunding : {{ $data->status }}
+                                        Status Crowdfunding :
+                                        {{ $data->status }}
                                     </p>
-                                    <a href="/detailCrowdfunding/{{ $data->id_crowdfunding }}" class="btn btn-success w-100">Lihat Data</a>
+                                    <a
+                                        href="/detailCrowdfunding/{{ $data->id_crowdfunding }}"
+                                        class="btn btn-success w-100 mt-auto"
+                                        >Lihat Data</a
+                                    >
                                 </div>
                             </div>
-                            @endforeach
-                            @endif
+                            @endforeach @endif
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        @endif
-        @endif
+        @endif @endif
     </body>
 </html>

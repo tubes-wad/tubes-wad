@@ -109,7 +109,7 @@
                         Status : {{ $user->status }}
                     </p>
                     <p class="h3 mt-4" style="font-size: 15px">
-                        nim / nip : {{ $user->nnim }}
+                        nim / nip : {{ $user->nim }}
                     </p>
                     <p class="h3 mt-4" style="font-size: 15px">
                         Alamat: {{ $user->alamat }}
@@ -130,7 +130,6 @@
                     <table class="table table-hover mt-4">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">id_user</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Tanggal</th>
@@ -145,7 +144,6 @@
                             </tr>
                             @else @foreach($infaqs as $data)
                             <tr>
-                                <th scope="row">1</th>
                                 <td>{{ $data->id_user}}</td>
                                 <td>{{ $data->nama}}</td>
                                 <td>{{ $data->created_at}}</td>
@@ -171,7 +169,6 @@
                     <table class="table table-hover mt-4">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">id user</th>
                                 <th scope="col">id crowdfunding</th>
                                 <th scope="col">Nama</th>
@@ -187,7 +184,6 @@
                             </tr>
                             @else @foreach($transaksi as $data)
                             <tr>
-                                <th scope="row">1</th>
                                 <td>{{ $data->id_user}}</td>
                                 <td>{{ $data->id_crowdfunding}}</td>
                                 <td>{{ $data->nama}}</td>
@@ -214,7 +210,6 @@
                     <table class="table table-hover mt-4">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">id user</th>
                                 <th scope="col">Nama Barang</th>
                                 <th scope="col">Tanggal</th>
@@ -231,7 +226,6 @@
                             </tr>
                             @else @foreach($wakaf as $data)
                             <tr>
-                                <th scope="row">1</th>
                                 <td>{{ $data->id_user}}</td>
                                 <td>{{ $data->nama_barang}}</td>
                                 <td>{{ $data->tanggal_pemberian}}</td>

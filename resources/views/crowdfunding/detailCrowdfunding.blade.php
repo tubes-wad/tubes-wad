@@ -126,6 +126,9 @@ session_start();
                             </h5>
                         </div>
                         <div class="modal-body">
+                            <p>
+                                - Silahkan lakukan Transfer ke Bank XYZ No Rek 083457284234 a/n lazisu
+                            </p>
                             <div class="mb-3">
                                 <label for="jumlah" class="col-form-label"
                                     >Jumlah Uang:</label
@@ -167,7 +170,7 @@ session_start();
                                 />
                                 <label class="form-check-label" for="anon"
                                     >Infaq Sebagai Anonim ?
-                                    {{ $data->id_crowdfunding }}</label
+                                    </label
                                 >
                             </div>
                             <input

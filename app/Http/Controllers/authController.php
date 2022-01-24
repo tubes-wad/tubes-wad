@@ -13,6 +13,7 @@ class authController extends Controller
         $password = Hash::make(request('pass'));
 
         $role = request('nama') == 'admin' ? 'admin' : 'user';
+
         user::create([
             'nama_lengkap' => request('nama'),
             'email' => request('email'),
@@ -37,9 +38,6 @@ class authController extends Controller
         if(count($resultUser) > 0){
             $passData = $resultUser[0]['password'];
             if(Hash::check(request('pass'), $passData)){
-                // setcookie('email', $resultUser[0]['email']);
-                // setcookie('id', $resultUser[0]['id_user']);
-                // setcookie('nama', $resultUser[0]['nama_lengkap']);
                 if($resultUser[0]['nama_lengkap'] == 'admin' || $resultUser[0]['role'] == 'admin'){
                     session_start();
                     $_SESSION['id'] = $resultUser[0]['id_user'];

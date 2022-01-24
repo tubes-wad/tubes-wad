@@ -144,7 +144,7 @@ session_start();
                             </p>
                             <p class="card-text" style="margin-top: -3%">
                                 <small class="text-muted"
-                                    >3 Menit yang lalu</small
+                                    >Beberapa saat yang lalu</small
                                 >
                             </p>
                         </div>
@@ -177,6 +177,9 @@ session_start();
                     </p>
                     <p>
                         - Hasil Infaq bisa kamu cek di Profil masing masing loh
+                    </p>
+                    <p>
+                        - Silahkan lakukan Transfer ke Bank XYZ No Rek 083457284234 a/n lazisu
                     </p>
                 </div>
             </div>

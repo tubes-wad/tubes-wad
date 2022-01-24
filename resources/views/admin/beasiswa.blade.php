@@ -1,5 +1,6 @@
 <?php 
 session_start();
+$count = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +8,7 @@ session_start();
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Beasiswa | Admin</title>
+        <title>Crowdfunding | Admin</title>
         <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -42,11 +43,10 @@ session_start();
         </style>
     </head>
     <body>
-    @if(!isset($_SESSION['role']))
-            <p>ANDA BUKAN ADMIN</p>
-    @else
-        @if($_SESSION['role'] !== 'admin')
-            <p>ANDA BUKAN ADMIN</p>
+        @if(!isset($_SESSION['role']))
+        <p>ANDA BUKAN ADMIN</p>
+        @else @if($_SESSION['role'] !== 'admin')
+        <p>ANDA BUKAN ADMIN</p>
         @else
         <div class="row">
             <div
@@ -71,7 +71,10 @@ session_start();
                     style="width: 65%"
                     >Home Admin</a
                 >
-                <a class="btn btn-warning mt-3 ml-5" href="/infaqAdmin" style="width: 65%"
+                <a
+                    class="btn btn-warning mt-3 ml-5"
+                    href="/infaqAdmin"
+                    style="width: 65%"
                     >Infaq</a
                 >
                 <a
@@ -80,10 +83,16 @@ session_start();
                     style="width: 65%"
                     >Crowdfunding</a
                 >
-                <a class="btn btn-warning mt-3 ml-5" href="/wakafAdmin" style="width: 65%"
+                <a
+                    class="btn btn-warning mt-3 ml-5"
+                    href="/wakafAdmin"
+                    style="width: 65%"
                     >Waqaf</a
                 >
-                <a class="btn btn-warning mt-3 ml-5" href="/daftarAdmin" style="width: 65%"
+                <a
+                    class="btn btn-warning mt-3 ml-5"
+                    href="/daftarAdmin"
+                    style="width: 65%"
                     >Daftar Admin</a
                 >
             </div>
@@ -103,54 +112,66 @@ session_start();
                     <p class="h1 mt-5" style="font-size: 35px">
                         Transaksi Crowdfunding
                     </p>
-                    <table class="table table-hover mt-4">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">id user</th>
-                                <th scope="col">id crowdfunding</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Tanggal</th>
-                                <th scope="col">Jumlah</th>
-                                <th scope="col">Gambar</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if(count($transaksi) < 1)
-                            <tr>
-                                <th scope="row">Belum ada data...</th>
-                            </tr>
-                            @else @foreach($transaksi as $data)
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>{{ $data->id_user}}</td>
-                                <td>{{ $data->id_crowdfunding}}</td>
-                                <td>{{ $data->nama}}</td>
-                                <td>{{ $data->created_at}}</td>
-                                <td>Rp.{{ $data->jumlah}}</td>
-                                <td>
-                                    <a
-                                        href="{{ asset('storage/' . $data->bukti)}}"
-                                        >Lihat Gambar</a
-                                    >
-                                </td>
-                                <td>
-                                    <a class="btn btn-success" href="/konfirmasiCrowdfunding/{{ $data->id_crowdfunding }}/{{ $data->id_donasi }}"
-                                        >Konfirmasi Crowdfunding</a
-                                    >
-                                    <a class="btn btn-warning" href="/accInfaq"
-                                        >Lihat Data User</a
-                                    >
-                                </td>
-                            </tr>
-                            @endforeach @endif
-                        </tbody>
-                    </table>
+                    <div
+                        style="
+                            position: relative;
+                            overflow: auto;
+                            height: 570px;
+                            display: block;
+                        "
+                    >
+                        <table class="table table-hover mt-4">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">id user</th>
+                                    <th scope="col">id crowdfunding</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Jumlah</th>
+                                    <th scope="col">Gambar</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if(count($transaksi) < 1)
+                                <tr>
+                                    <th scope="row">Belum ada data...</th>
+                                </tr>
+                                @else @foreach($transaksi as $data)
+                                <tr>
+                                    <th scope="row">{{ $count+=1 }}</th>
+                                    <td>{{ $data->id_user}}</td>
+                                    <td>{{ $data->id_crowdfunding}}</td>
+                                    <td>{{ $data->nama}}</td>
+                                    <td>{{ $data->created_at}}</td>
+                                    <td>Rp.{{ $data->jumlah}}</td>
+                                    <td>
+                                        <a
+                                            href="{{ asset('storage/' . $data->bukti)}}"
+                                            >Lihat Gambar</a
+                                        >
+                                    </td>
+                                    <td>
+                                        <a
+                                            class="btn btn-success"
+                                            href="/konfirmasiCrowdfunding/{{ $data->id_crowdfunding }}/{{ $data->id_donasi }}"
+                                            >Konfirmasi Crowdfunding</a
+                                        >
+                                        <a
+                                            class="btn btn-warning"
+                                            href="/accInfaq"
+                                            >Lihat Data User</a
+                                        >
+                                    </td>
+                                </tr>
+                                @endforeach @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-        @endif
-        @endif
+        @endif @endif
     </body>
 </html>

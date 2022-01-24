@@ -15,6 +15,7 @@ class infaqController extends Controller
         $bukti = request('image')->store('bukti-transfer');
 
         $anon = request('anon') ? 'on' : 'off';
+        
         infaq::create([
             'nama' => $_SESSION['nama'],
             'email' => $_SESSION['email'],

@@ -126,7 +126,7 @@ session_start();
         </div>
         <div class="container" id="banner">
             <p class="h1" style="font-size: 35px">
-                Lazissu {{ isset($_GET["gagal"]) }}
+                Lazissu
             </p>
             <p class="h1" style="font-size: 20px">Berbagai Macam Kebaikan</p>
             <div class="row mt-4 mb-4">

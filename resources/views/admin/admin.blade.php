@@ -1,5 +1,6 @@
 <?php 
 session_start();
+$count = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,16 +39,15 @@ session_start();
     </head>
     <style>
         body {
-            overflow: hidden;
+            overflow-x: hidden;
         }
     </style>
     <body>
         @if(!isset($_SESSION['role']))
-            <p>ANDA BUKAN ADMIN</p>
+        <p>ANDA BUKAN ADMIN</p>
+        @else @if($_SESSION['role'] !== 'admin')
+        <p>ANDA BUKAN ADMIN</p>
         @else
-            @if($_SESSION['role'] !== 'admin')
-                <p>ANDA BUKAN ADMIN</p>
-            @else
         <div class="row">
             <div
                 class="col-sm-2 sidebar"
@@ -62,7 +62,9 @@ session_start();
                 <center>
                     <br />
                     <br />
-                    <p class="h1" style="font-size: 35px">{{ $_SESSION['nama'] }}</p>
+                    <p class="h1" style="font-size: 35px">
+                        {{ $_SESSION["nama"] }}
+                    </p>
                     <img src="images/logo-lazis.png" alt="logo" class="mt-3" />
                 </center>
                 <a
@@ -89,10 +91,16 @@ session_start();
                     style="width: 65%"
                     >Waqaf</a
                 >
-                <a class="btn btn-warning mt-3 ml-5" href="/daftarAdmin" style="width: 65%"
+                <a
+                    class="btn btn-warning mt-3 ml-5"
+                    href="/daftarAdmin"
+                    style="width: 65%"
                     >Daftar Admin</a
                 >
-                <a class="btn btn-danger mt-3 ml-5" href="/logout" style="width: 65%"
+                <a
+                    class="btn btn-danger mt-3 ml-5"
+                    href="/logout"
+                    style="width: 65%"
                     >Logout</a
                 >
             </div>
@@ -114,60 +122,78 @@ session_start();
                             Rp. {{ $dana }}
                         </p>
                         <center>
-                            <a href="/rekap" class="mt-3 btn btn-success ml-3 w-75 mb-3">
+                            <a
+                                href="/rekap"
+                                class="mt-3 btn btn-success ml-3 w-75 mb-3"
+                            >
                                 Catat
-                            </a>
-                            <a href="/editUang" class="btn btn-warning ml-3 w-75 mb-3">
-                                Update Jumlah Dana
                             </a>
                         </center>
                     </div>
                 </div>
                 <div class="ml-5">
                     <p class="h1 mt-5" style="font-size: 35px">
-                        Daftar Dana Crowdfunding
+                        Daftar Rekap Dana
                     </p>
                     <p class="h5 mt-3" style="font-size: 20px">
-                        Anda bisa melihat dana per Crowdfunding disini
+                        Anda bisa melihat rekap dana disini
                     </p>
-                    <table class="table table-hover mt-4">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Jumlah</th>
-                                <th scope="col">Tanggal Rekap</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if(count($rekap) < 1)
-                            <tr>
-                                <th scope="row">Belum ada data...</th>
-                            </tr>
-                            @else @foreach($rekap as $data)
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>{{ $data->jumlah}}</td>
-                                <td>{{ $data->created_at}}</td>
-                                @if( $data->status == 'belum diumumkan')
-                                <td> <button class="btn btn-warning">{{ $data->status }}</button></td>
-                                <td>
-                                    <a class="btn btn-success" href="/umumkan/{{ $data->id_rekap }}"
-                                        >Tandai Sudah Diumumkan</a
-                                    >
-                                </td>
-                                @else
-                                <td> <button class="btn btn-success">{{ $data->status }}</button></td>
-                                @endif
-                            </tr>
-                            @endforeach @endif
-                        </tbody>
-                    </table>
+                    <div
+                        style="
+                            position: relative;
+                            overflow: auto;
+                            height: 450px;
+                            display: block;
+                        "
+                    >
+                        <table class="table table-hover mt-4">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Jumlah</th>
+                                    <th scope="col">Tanggal Rekap</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if(count($rekap) < 1)
+                                <tr>
+                                    <th scope="row">Belum ada data...</th>
+                                </tr>
+                                @else @foreach($rekap as $data)
+                                <tr>
+                                    <th scope="row">{{ $count+=1 }}</th>
+                                    <td>{{ $data->jumlah}}</td>
+                                    <td>{{ $data->created_at}}</td>
+                                    @if( $data->status == 'belum diumumkan')
+                                    <td>
+                                        <button class="btn btn-warning">
+                                            {{ $data->status }}
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a
+                                            class="btn btn-success"
+                                            href="/umumkan/{{ $data->id_rekap }}"
+                                            >Tandai Sudah Diumumkan</a
+                                        >
+                                    </td>
+                                    @else
+                                    <td>
+                                        <button class="btn btn-success">
+                                            {{ $data->status }}
+                                        </button>
+                                    </td>
+                                    @endif
+                                </tr>
+                                @endforeach @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-        @endif
-        @endif
+        @endif @endif
     </body>
 </html>
